@@ -18,10 +18,10 @@ export const ProvinceSelector: React.FC<ProvinceSelectorProps> = ({
         Province/Territory
       </Label>
       <Select value={selectedProvince} onValueChange={onProvinceChange}>
-        <SelectTrigger className="w-full">
+        <SelectTrigger className="w-full bg-white">
           <SelectValue placeholder="Select a province or territory" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="!bg-white !bg-opacity-100">
           {PROVINCES.map((province) => (
             <SelectItem key={province.code} value={province.code}>
               {province.name}

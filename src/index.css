@@ -48,3 +48,24 @@
   --ring: 0 0% 83.1%;
 }
 
+/* Force dropdown backgrounds to be solid white */
+[data-radix-select-content] {
+  background: white !important;
+  background-color: white !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+[data-radix-popper-content-wrapper] {
+  background: white !important;
+  background-color: white !important;
+}
+
+/* Target the actual select content */
+.radix-select-content,
+[data-state="open"][data-side] {
+  background: white !important;
+  background-color: white !important;
+  backdrop-filter: none !important;
+}
+

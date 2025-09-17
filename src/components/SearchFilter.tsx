@@ -19,6 +19,17 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
   onFilterChange
 }) => {
   return (
+    <>
+      <style>
+        {`
+          [data-radix-select-content] {
+            background: white !important;
+            background-color: white !important;
+            backdrop-filter: none !important;
+            opacity: 1 !important;
+          }
+        `}
+      </style>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="space-y-2">
         <Label htmlFor="search" className="text-sm font-medium text-slate-700">
@@ -54,10 +65,10 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
           Filter by Type
         </Label>
         <Select value={filterType} onValueChange={onFilterChange}>
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Select filter type" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="!bg-white !bg-opacity-100">
             <SelectItem value="all">All Holidays</SelectItem>
             <SelectItem value="federal">Federal Only</SelectItem>
             <SelectItem value="provincial">Provincial Only</SelectItem>
@@ -66,5 +77,6 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         </Select>
       </div>
     </div>
+    </>
   );
 };
