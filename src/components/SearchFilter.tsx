@@ -1,5 +1,9 @@
 import React from 'react';
 import { Search, X } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 interface SearchFilterProps {
   searchTerm: string;
@@ -15,41 +19,51 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
   onFilterChange
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-2">
+        <Label htmlFor="search" className="text-sm font-medium text-slate-700">
+          Search Holidays
+        </Label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-4 w-4 text-slate-400" />
           </div>
-          <input
+          <Input
+            id="search"
             type="text"
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search holidays..."
-            className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-canada-red focus:border-canada-red"
+            className="pl-10 pr-10"
           />
           {searchTerm && (
-            <button
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => onSearchChange('')}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+              className="absolute inset-y-0 right-0 px-3 h-auto"
             >
-              <X className="h-4 w-4 text-gray-400 hover:text-gray-600" />
-            </button>
+              <X className="h-4 w-4 text-slate-400 hover:text-slate-600" />
+            </Button>
           )}
         </div>
+      </div>
 
-        <div>
-          <select
-            value={filterType}
-            onChange={(e) => onFilterChange(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-canada-red focus:border-canada-red"
-          >
-            <option value="all">All Holidays</option>
-            <option value="federal">Federal Only</option>
-            <option value="provincial">Provincial Only</option>
-            <option value="statutory">Statutory Only</option>
-          </select>
-        </div>
+      <div className="space-y-2">
+        <Label className="text-sm font-medium text-slate-700">
+          Filter by Type
+        </Label>
+        <Select value={filterType} onValueChange={onFilterChange}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select filter type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Holidays</SelectItem>
+            <SelectItem value="federal">Federal Only</SelectItem>
+            <SelectItem value="provincial">Provincial Only</SelectItem>
+            <SelectItem value="statutory">Statutory Only</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );
