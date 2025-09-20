@@ -8,6 +8,11 @@ import { ExportButtons } from './components/ExportButtons';
 import { HolidayService } from './services/holidayService';
 import { Holiday, PROVINCES } from './types/holiday';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Search, X } from 'lucide-react';
 
 function App() {
   const [selectedProvince, setSelectedProvince] = useState('ON');
@@ -67,7 +72,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#EEEFF1] to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-[#144215] to-[#46D448] bg-clip-text text-transparent">
             Canadian Public Holidays
@@ -75,15 +80,6 @@ function App() {
           <p className="text-lg max-w-2xl mx-auto" style={{ color: '#1F691B' }}>
             Discover public holidays across Canada by province and date range
           </p>
-          {/* Test div to verify colors are working */}
-          <div className="mt-4 p-4 border rounded-lg" style={{ backgroundColor: '#EEEFF1', borderColor: '#1F691B' }}>
-            <p className="font-semibold" style={{ color: '#144215' }}>Color Test:</p>
-            <div className="flex gap-2 mt-2">
-              <span className="px-2 py-1 text-white rounded text-sm" style={{ backgroundColor: '#144215' }}>Dark Green</span>
-              <span className="px-2 py-1 text-white rounded text-sm" style={{ backgroundColor: '#1F691B' }}>Medium Green</span>
-              <span className="px-2 py-1 text-white rounded text-sm" style={{ backgroundColor: '#46D448' }}>Bright Green</span>
-            </div>
-          </div>
         </div>
 
         <div className="space-y-8">
@@ -95,25 +91,65 @@ function App() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ProvinceSelector
-                  selectedProvince={selectedProvince}
-                  onProvinceChange={setSelectedProvince}
-                />
-                <DateRangePicker
-                  startDate={startDate}
-                  endDate={endDate}
-                  onStartDateChange={setStartDate}
-                  onEndDateChange={setEndDate}
-                />
-              </div>
-              <div className="mt-6">
-                <SearchFilter
-                  searchTerm={searchTerm}
-                  onSearchChange={setSearchTerm}
-                  filterType={filterType}
-                  onFilterChange={setFilterType}
-                />
+              <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <ProvinceSelector
+                    selectedProvince={selectedProvince}
+                    onProvinceChange={setSelectedProvince}
+                  />
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-dark-green">
+                      Filter by Type
+                    </Label>
+                    <Select value={filterType} onValueChange={setFilterType}>
+                      <SelectTrigger className="w-full h-10 bg-white border-medium-green focus:border-bright-green">
+                        <SelectValue placeholder="Select filter type" />
+                      </SelectTrigger>
+                      <SelectContent className="!bg-white !bg-opacity-100">
+                        <SelectItem value="all">All Holidays</SelectItem>
+                        <SelectItem value="federal">Federal Only</SelectItem>
+                        <SelectItem value="provincial">Provincial Only</SelectItem>
+                        <SelectItem value="statutory">Statutory Only</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-6">
+                  <DateRangePicker
+                    startDate={startDate}
+                    endDate={endDate}
+                    onStartDateChange={setStartDate}
+                    onEndDateChange={setEndDate}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="search" className="text-sm font-medium text-dark-green">
+                    Search Holidays
+                  </Label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Search className="h-4 w-4 text-medium-green" />
+                    </div>
+                    <Input
+                      id="search"
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Search holidays..."
+                      className="w-full h-10 bg-white border-medium-green focus:border-bright-green pl-10 pr-10"
+                    />
+                    {searchTerm && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSearchTerm('')}
+                        className="absolute inset-y-0 right-0 px-3 h-auto text-medium-green hover:text-dark-green"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>

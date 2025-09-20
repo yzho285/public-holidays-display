@@ -18,7 +18,7 @@ export const ProvinceSelector: React.FC<ProvinceSelectorProps> = ({
         Province/Territory
       </Label>
       <Select value={selectedProvince} onValueChange={onProvinceChange}>
-        <SelectTrigger className="w-full bg-white border-medium-green focus:border-bright-green">
+        <SelectTrigger className="w-full h-10 bg-white border-medium-green focus:border-bright-green">
           <SelectValue placeholder="Select a province or territory" />
         </SelectTrigger>
         <SelectContent className="!bg-white !bg-opacity-100">

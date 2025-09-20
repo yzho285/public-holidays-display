@@ -10,16 +10,20 @@ interface SearchFilterProps {
   onSearchChange: (term: string) => void;
   filterType: string;
   onFilterChange: (type: string) => void;
+  sortType?: string;
+  onSortChange?: (type: string) => void;
 }
 
 export const SearchFilter: React.FC<SearchFilterProps> = ({
   searchTerm,
   onSearchChange,
   filterType,
-  onFilterChange
+  onFilterChange,
+  sortType = 'date',
+  onSortChange = () => {}
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-2 gap-6 col-span-2">
       <div className="space-y-2">
         <Label htmlFor="search" className="text-sm font-medium text-dark-green">
           Search Holidays
@@ -34,7 +38,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search holidays..."
-            className="pl-10 pr-10 border-medium-green focus:border-bright-green"
+            className="w-full h-10 bg-white border-medium-green focus:border-bright-green pl-10 pr-10"
           />
           {searchTerm && (
             <Button
@@ -54,7 +58,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
           Filter by Type
         </Label>
         <Select value={filterType} onValueChange={onFilterChange}>
-          <SelectTrigger className="w-full bg-white border-medium-green focus:border-bright-green">
+          <SelectTrigger className="w-full h-10 bg-white border-medium-green focus:border-bright-green">
             <SelectValue placeholder="Select filter type" />
           </SelectTrigger>
           <SelectContent className="!bg-white !bg-opacity-100">

@@ -43,7 +43,7 @@ export const HolidayList: React.FC<HolidayListProps> = ({ holidays, loading, err
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-6 grid-cols-3">
       {holidays.map((holiday) => (
         <HolidayCard key={holiday.id} holiday={holiday} />
       ))}
