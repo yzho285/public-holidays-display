@@ -19,8 +19,6 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
   onSearchChange,
   filterType,
   onFilterChange,
-  sortType = 'date',
-  onSortChange = () => {}
 }) => {
   return (
     <div className="grid grid-cols-2 gap-6 col-span-2">

@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { startOfYear, endOfYear } from 'date-fns';
 import { ProvinceSelector } from './components/ProvinceSelector';
 import { DateRangePicker } from './components/DateRangePicker';
-import { SearchFilter } from './components/SearchFilter';
 import { HolidayList } from './components/HolidayList';
 import { ExportButtons } from './components/ExportButtons';
 import { HolidayService } from './services/holidayService';
