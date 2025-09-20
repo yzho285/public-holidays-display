@@ -19,25 +19,14 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
   onFilterChange
 }) => {
   return (
-    <>
-      <style>
-        {`
-          [data-radix-select-content] {
-            background: white !important;
-            background-color: white !important;
-            backdrop-filter: none !important;
-            opacity: 1 !important;
-          }
-        `}
-      </style>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="space-y-2">
-        <Label htmlFor="search" className="text-sm font-medium text-slate-700">
+        <Label htmlFor="search" className="text-sm font-medium text-dark-green">
           Search Holidays
         </Label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-4 w-4 text-slate-400" />
+            <Search className="h-4 w-4 text-medium-green" />
           </div>
           <Input
             id="search"
@@ -45,27 +34,27 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search holidays..."
-            className="pl-10 pr-10"
+            className="pl-10 pr-10 border-medium-green focus:border-bright-green"
           />
           {searchTerm && (
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onSearchChange('')}
-              className="absolute inset-y-0 right-0 px-3 h-auto"
+              className="absolute inset-y-0 right-0 px-3 h-auto text-medium-green hover:text-dark-green"
             >
-              <X className="h-4 w-4 text-slate-400 hover:text-slate-600" />
+              <X className="h-4 w-4" />
             </Button>
           )}
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label className="text-sm font-medium text-slate-700">
+        <Label className="text-sm font-medium text-dark-green">
           Filter by Type
         </Label>
         <Select value={filterType} onValueChange={onFilterChange}>
-          <SelectTrigger className="w-full bg-white">
+          <SelectTrigger className="w-full bg-white border-medium-green focus:border-bright-green">
             <SelectValue placeholder="Select filter type" />
           </SelectTrigger>
           <SelectContent className="!bg-white !bg-opacity-100">
@@ -77,6 +66,5 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         </Select>
       </div>
     </div>
-    </>
   );
 };

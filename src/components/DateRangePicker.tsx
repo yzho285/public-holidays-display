@@ -23,7 +23,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     <div className="w-full space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="startDate" className="text-sm font-medium text-slate-700">
+          <Label htmlFor="startDate" className="text-sm font-medium text-dark-green">
             Start Date
           </Label>
           <Input
@@ -33,10 +33,11 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
             min={minDate}
             max={maxDate}
             onChange={(e) => onStartDateChange(new Date(e.target.value))}
+            className="border-medium-green focus:border-bright-green"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="endDate" className="text-sm font-medium text-slate-700">
+          <Label htmlFor="endDate" className="text-sm font-medium text-dark-green">
             End Date
           </Label>
           <Input
@@ -46,6 +47,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
             min={format(startDate, 'yyyy-MM-dd')}
             max={maxDate}
             onChange={(e) => onEndDateChange(new Date(e.target.value))}
+            className="border-medium-green focus:border-bright-green"
           />
         </div>
       </div>

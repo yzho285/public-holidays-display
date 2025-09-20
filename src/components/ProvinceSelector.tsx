@@ -14,11 +14,11 @@ export const ProvinceSelector: React.FC<ProvinceSelectorProps> = ({
 }) => {
   return (
     <div className="w-full space-y-2">
-      <Label htmlFor="province" className="text-sm font-medium text-slate-700">
+      <Label htmlFor="province" className="text-sm font-medium text-dark-green">
         Province/Territory
       </Label>
       <Select value={selectedProvince} onValueChange={onProvinceChange}>
-        <SelectTrigger className="w-full bg-white">
+        <SelectTrigger className="w-full bg-white border-medium-green focus:border-bright-green">
           <SelectValue placeholder="Select a province or territory" />
         </SelectTrigger>
         <SelectContent className="!bg-white !bg-opacity-100">

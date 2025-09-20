@@ -28,7 +28,7 @@ export const ExportButtons: React.FC<ExportButtonsProps> = ({ holidays, province
         variant="outline"
         size="sm"
         onClick={handleCSVExport}
-        className="bg-white hover:bg-slate-50"
+        className="bg-white hover:bg-light-gray border-medium-green text-dark-green hover:text-dark-green"
       >
         <FileText className="w-4 h-4 mr-2" />
         Export CSV
@@ -37,7 +37,7 @@ export const ExportButtons: React.FC<ExportButtonsProps> = ({ holidays, province
         variant="outline"
         size="sm"
         onClick={handleICSExport}
-        className="bg-white hover:bg-slate-50"
+        className="bg-white hover:bg-light-gray border-medium-green text-dark-green hover:text-dark-green"
       >
         <Calendar className="w-4 h-4 mr-2" />
         Export Calendar

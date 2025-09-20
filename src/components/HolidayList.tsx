@@ -13,20 +13,20 @@ export const HolidayList: React.FC<HolidayListProps> = ({ holidays, loading, err
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center py-12 space-y-4">
-        <Loader2 className="h-8 w-8 animate-spin text-red-600" />
-        <p className="text-slate-600 text-sm">Loading holidays...</p>
+        <Loader2 className="h-8 w-8 animate-spin text-bright-green" />
+        <p className="text-sm text-medium-green">Loading holidays...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 flex items-start space-x-3">
-        <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
+      <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 flex items-start space-x-3">
+        <AlertCircle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
         <div>
-          <p className="text-red-800 font-medium">Error loading holidays</p>
-          <p className="text-red-700 text-sm mt-1">{error}</p>
-          <p className="text-red-600 text-sm mt-2">Using cached data if available.</p>
+          <p className="text-destructive font-medium">Error loading holidays</p>
+          <p className="text-destructive/80 text-sm mt-1">{error}</p>
+          <p className="text-destructive/70 text-sm mt-2">Using cached data if available.</p>
         </div>
       </div>
     );
@@ -34,10 +34,10 @@ export const HolidayList: React.FC<HolidayListProps> = ({ holidays, loading, err
 
   if (holidays.length === 0) {
     return (
-      <div className="bg-slate-50 border border-slate-200 rounded-lg p-12 text-center">
-        <Calendar className="mx-auto h-12 w-12 text-slate-400 mb-4" />
-        <h3 className="text-lg font-medium text-slate-900 mb-2">No holidays found</h3>
-        <p className="text-sm text-slate-500">Try expanding your date range or selecting a different province.</p>
+      <div className="bg-light-gray border border-medium-green rounded-lg p-12 text-center">
+        <Calendar className="mx-auto h-12 w-12 text-medium-green mb-4" />
+        <h3 className="text-lg font-medium text-dark-green mb-2">No holidays found</h3>
+        <p className="text-sm text-medium-green">Try expanding your date range or selecting a different province.</p>
       </div>
     );
   }
