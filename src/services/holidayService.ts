@@ -36,26 +36,33 @@ export class HolidayService {
     startDate: Date,
     endDate: Date
   ): Promise<Holiday[]> {
-    const year = startDate.getFullYear();
+    const startYear = startDate.getFullYear();
+    const endYear = endDate.getFullYear();
+    const allHolidays: Holiday[] = [];
 
     try {
-      const response = await axios.get(`${API_BASE_URL}/provinces/${provinceCode}`, {
-        params: { year },
-        timeout: 5000
-      });
+      // Fetch holidays for each year in the range
+      for (let year = startYear; year <= endYear; year++) {
+        const response = await axios.get(`${API_BASE_URL}/provinces/${provinceCode}`, {
+          params: { year },
+          timeout: 5000
+        });
 
-      const holidays: Holiday[] = response.data.province.holidays.map((h: any) => ({
-        id: h.id || `${h.date}-${h.nameEn}`,
-        name: h.nameEn,
-        date: h.date,
-        observedDate: h.observedDate,
-        type: h.federal ? 'federal' : 'provincial',
-        provinces: h.provinces || [provinceCode],
-        description: h.nameEn,
-        isStatutory: h.federal === 1
-      }));
+        const yearHolidays: Holiday[] = response.data.province.holidays.map((h: any) => ({
+          id: h.id || `${h.date}-${h.nameEn}`,
+          name: h.nameEn,
+          date: h.date,
+          observedDate: h.observedDate,
+          type: h.federal ? 'federal' : 'provincial',
+          provinces: h.provinces || [provinceCode],
+          description: h.nameEn,
+          isStatutory: h.federal === 1
+        }));
 
-      return holidays.filter(h => {
+        allHolidays.push(...yearHolidays);
+      }
+
+      return allHolidays.filter(h => {
         const holidayDate = parseISO(h.date);
         return isWithinInterval(holidayDate, { start: startDate, end: endDate });
       });
@@ -69,9 +76,17 @@ export class HolidayService {
     startDate: Date,
     endDate: Date
   ): Holiday[] {
-    const holidays = getStaticHolidays(startDate.getFullYear());
+    const startYear = startDate.getFullYear();
+    const endYear = endDate.getFullYear();
+    const allHolidays: Holiday[] = [];
 
-    return holidays
+    // Get static holidays for each year in the range
+    for (let year = startYear; year <= endYear; year++) {
+      const yearHolidays = getStaticHolidays(year);
+      allHolidays.push(...yearHolidays);
+    }
+
+    return allHolidays
       .filter(h => {
         const holidayDate = parseISO(h.date);
         const isInRange = isWithinInterval(holidayDate, { start: startDate, end: endDate });

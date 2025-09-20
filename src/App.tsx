@@ -70,7 +70,7 @@ function App() {
   const selectedProvinceName = PROVINCES.find(p => p.code === selectedProvince)?.name || selectedProvince;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#EEEFF1] to-white">
+    <div className="min-h-screen bg-white">
       <div className="w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-[#144215] to-[#46D448] bg-clip-text text-transparent">
